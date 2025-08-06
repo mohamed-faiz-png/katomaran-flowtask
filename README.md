@@ -1,73 +1,267 @@
-# Welcome to your Lovable project
+# FlowTask - Cross-Platform Todo Management App
 
-## Project info
+**Built for Katomaran Hackathon**
 
-**URL**: https://lovable.dev/projects/d4291f93-3fd1-4c4c-9734-1814ca5fac63
+A beautiful, feature-rich task management application built with React, TypeScript, and Capacitor for cross-platform mobile deployment.
 
-## How can I edit this code?
+## 🎯 Features
 
-There are several ways of editing your application.
+### ✅ Core Functionality
+- **Full CRUD Operations**: Create, read, update, and delete tasks
+- **Task Properties**: Title, description, due date, priority levels, completion status
+- **Smart Filtering**: Filter by status, priority, and search functionality
+- **Sorting Options**: Sort by creation date, due date, or priority
 
-**Use Lovable**
+### 📱 Mobile-First Experience
+- **Responsive Design**: Optimized for mobile devices with touch-friendly interfaces
+- **Swipe Gestures**: Swipe-to-delete functionality for intuitive task management
+- **Pull-to-Refresh**: Native-like refresh experience
+- **Floating Action Button**: Quick task creation with material design FAB
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/d4291f93-3fd1-4c4c-9734-1814ca5fac63) and start prompting.
+### 🎨 Beautiful UI/UX
+- **Smooth Animations**: Framer Motion powered animations for all interactions
+- **Modern Design System**: Custom design tokens with HSL color system
+- **Dark/Light Mode**: Automatic theme support
+- **Loading States**: Elegant loading skeletons and states
+- **Empty States**: Helpful messaging when no tasks are present
 
-Changes made via Lovable will be committed automatically to this repo.
+### 🔐 Authentication
+- **Google OAuth**: Secure social login (demo mode available)
+- **Session Management**: Persistent login state with localStorage
+- **User Profile**: Avatar and user information display
 
-**Use your preferred IDE**
+### ⚡ Performance & Architecture
+- **Clean Architecture**: MVVM pattern with separation of concerns
+- **TypeScript**: Full type safety throughout the application
+- **Local Storage**: Client-side data persistence
+- **Optimistic Updates**: Instant UI feedback with error handling
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## 🏗️ Architecture
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Project Structure
+```
+src/
+├── components/           # React components
+│   ├── auth/            # Authentication components
+│   ├── layout/          # Layout components
+│   ├── tasks/           # Task-related components
+│   └── ui/              # Reusable UI components (shadcn/ui)
+├── hooks/               # Custom React hooks
+├── services/            # Business logic layer
+├── repositories/        # Data access layer
+├── types/               # TypeScript type definitions
+└── lib/                 # Utility functions
+```
 
-Follow these steps:
+### Architecture Pattern: Clean Architecture + MVVM
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+```mermaid
+graph TB
+    subgraph "Presentation Layer"
+        A[React Components] --> B[Custom Hooks]
+        B --> C[UI State Management]
+    end
+    
+    subgraph "Business Logic Layer"
+        D[Task Service] --> E[Auth Service]
+    end
+    
+    subgraph "Data Access Layer"
+        F[Task Repository] --> G[Local Storage]
+        H[Auth Repository] --> I[Local Storage]
+    end
+    
+    subgraph "Core Layer"
+        J[Task Entity] --> K[User Entity]
+        L[Type Definitions]
+    end
+    
+    A --> D
+    D --> F
+    E --> H
+    D --> J
+    E --> K
+```
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+### Key Architectural Decisions
 
-# Step 3: Install the necessary dependencies.
-npm i
+1. **Separation of Concerns**: Business logic separated from UI components
+2. **Repository Pattern**: Abstracted data access for easy testing and future API integration
+3. **Custom Hooks**: Encapsulated state management and side effects
+4. **Type Safety**: Comprehensive TypeScript interfaces and enums
+5. **Design System**: Centralized theming with CSS custom properties
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+- For mobile development: Android Studio (Android) or Xcode (iOS)
+
+### Installation
+
+1. **Clone the repository**
+```bash
+git clone <repository-url>
+cd katomaran-flowtask
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Start development server**
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. **Initialize Capacitor (for mobile)**
+```bash
+npx cap init
+```
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+### Mobile Development Setup
 
-**Use GitHub Codespaces**
+1. **Add mobile platforms**
+```bash
+# For Android
+npx cap add android
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# For iOS (macOS only)
+npx cap add ios
+```
 
-## What technologies are used for this project?
+2. **Build and sync**
+```bash
+npm run build
+npx cap sync
+```
 
-This project is built with:
+3. **Run on device/emulator**
+```bash
+# Android
+npx cap run android
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+# iOS
+npx cap run ios
+```
 
-## How can I deploy this project?
+## 📱 Mobile Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/d4291f93-3fd1-4c4c-9734-1814ca5fac63) and click on Share -> Publish.
+### Generate APK for Android
 
-## Can I connect a custom domain to my Lovable project?
+1. **Build the web app**
+```bash
+npm run build
+```
 
-Yes, you can!
+2. **Sync with Capacitor**
+```bash
+npx cap sync android
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+3. **Open in Android Studio**
+```bash
+npx cap open android
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+4. **Build APK in Android Studio**
+   - Go to `Build` → `Build Bundle(s) / APK(s)` → `Build APK(s)`
+   - APK will be generated in `android/app/build/outputs/apk/debug/`
+
+### For Production
+
+1. **Configure app signing**
+2. **Build release version**
+3. **Test on multiple devices**
+4. **Deploy to Google Play Store / Apple App Store**
+
+## 🎯 Demo Features
+
+### Core Task Management
+- ✅ Create tasks with title, description, due date, and priority
+- ✅ Mark tasks as complete/incomplete
+- ✅ Edit existing tasks
+- ✅ Delete tasks with swipe gesture
+- ✅ Search and filter tasks
+- ✅ Sort by different criteria
+
+### Mobile Experience
+- ✅ Touch-optimized interface
+- ✅ Swipe-to-delete gesture
+- ✅ Pull-to-refresh functionality
+- ✅ Floating Action Button
+- ✅ Responsive design for all screen sizes
+
+### Visual Polish
+- ✅ Smooth animations and transitions
+- ✅ Beautiful color system and typography
+- ✅ Loading states and empty states
+- ✅ Progress tracking and statistics
+- ✅ Icon system with Lucide React
+
+## 🛠️ Technology Stack
+
+### Core Technologies
+- **React 18**: Component-based UI library
+- **TypeScript**: Type-safe JavaScript
+- **Vite**: Fast build tool and dev server
+- **Capacitor**: Cross-platform mobile development
+
+### UI & Styling
+- **Tailwind CSS**: Utility-first CSS framework
+- **shadcn/ui**: High-quality component library
+- **Framer Motion**: Animation library
+- **Lucide React**: Icon library
+
+### State Management & Data
+- **React Hooks**: Built-in state management
+- **React Hook Form**: Form handling with validation
+- **Zod**: Schema validation
+- **localStorage**: Client-side persistence
+
+### Development Tools
+- **ESLint**: Code linting
+- **TypeScript**: Static type checking
+- **React Query**: Server state management (ready for API integration)
+
+## 📊 Project Statistics
+
+- **Components**: 15+ reusable React components
+- **Type Definitions**: Comprehensive TypeScript interfaces
+- **Animations**: 10+ smooth animation variants
+- **Design Tokens**: 50+ CSS custom properties
+- **Mobile Gestures**: Swipe-to-delete, pull-to-refresh
+- **Architecture Layers**: 4-layer clean architecture
+
+## 🎥 Demo Video
+
+Record a Loom video showcasing:
+1. Authentication flow
+2. Task creation and management
+3. Mobile gestures (swipe, pull-to-refresh)
+4. Filtering and search
+5. Statistics and progress tracking
+6. Responsive design across devices
+
+## 🔮 Future Enhancements
+
+- [ ] Cloud sync with Firebase/Supabase
+- [ ] Push notifications for due dates
+- [ ] Task categories and tags
+- [ ] Team collaboration features
+- [ ] Calendar integration
+- [ ] Data export functionality
+- [ ] Offline support with service workers
+- [ ] Real-time crash reporting with Sentry
+
+## 📄 License
+
+Built for Katomaran Hackathon - Educational/Competition Use
+
+---
+
+**Developed by**: [Your Name]
+**Event**: Katomaran Hackathon 2024
+**Tech Stack**: React + TypeScript + Capacitor + Tailwind CSS

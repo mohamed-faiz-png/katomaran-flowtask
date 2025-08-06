@@ -2,41 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Task Management App Design System - Mobile First */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Background Colors */
+    --background: 248 250 252; /* Light slate background */
+    --foreground: 226 23% 11%; /* Rich dark text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card System */
+    --card: 255 255 255; /* Pure white cards */
+    --card-foreground: 226 23% 11%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Interactive Elements */
+    --popover: 255 255 255;
+    --popover-foreground: 226 23% 11%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Brand Colors - Modern Blue/Purple System */
+    --primary: 234 89% 74%; /* Vibrant blue */
+    --primary-foreground: 255 255 255;
+    --primary-hover: 234 89% 64%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary Actions */
+    --secondary: 237 22% 20%; /* Dark slate */
+    --secondary-foreground: 255 255 255;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Subtle UI Elements */
+    --muted: 248 250 252; /* Very light background */
+    --muted-foreground: 107 14% 45%; /* Muted text */
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent Colors */
+    --accent: 142 86% 28%; /* Success green */
+    --accent-foreground: 255 255 255;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --destructive: 0 84% 60%; /* Error red */
+    --destructive-foreground: 255 255 255;
+    
+    --warning: 38 92% 50%; /* Warning orange */
+    --warning-foreground: 255 255 255;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders and Inputs */
+    --border: 220 13% 91%; /* Light border */
+    --input: 220 13% 91%;
+    --ring: 234 89% 74%; /* Focus ring matches primary */
 
-    --radius: 0.5rem;
+    /* Task Status Colors */
+    --task-open: 217 91% 60%; /* Blue for open tasks */
+    --task-completed: 142 86% 28%; /* Green for completed */
+    --task-overdue: 0 84% 60%; /* Red for overdue */
+
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(234 89% 74%), hsl(234 89% 84%));
+    --gradient-secondary: linear-gradient(135deg, hsl(237 22% 20%), hsl(237 22% 30%));
+    
+    /* Shadows */
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+    --shadow-fab: 0 8px 25px -8px hsl(234 89% 74% / 0.4);
+    --shadow-elevated: 0 10px 25px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1);
+
+    /* Radius */
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,33 +82,57 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark Mode Background */
+    --background: 224 16% 10%; /* Very dark blue */
+    --foreground: 210 40% 98%; /* Almost white text */
 
-    --card: 222.2 84% 4.9%;
+    /* Dark Cards */
+    --card: 224 16% 14%; /* Slightly lighter dark */
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    /* Dark Interactive */
+    --popover: 224 16% 14%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    /* Dark Brand Colors */
+    --primary: 234 89% 74%; /* Keep vibrant blue */
+    --primary-foreground: 224 16% 10%; /* Dark text on blue */
+    --primary-hover: 234 89% 84%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    /* Dark Secondary */
+    --secondary: 226 14% 22%; /* Medium dark */
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    /* Dark Muted */
+    --muted: 224 16% 14%;
+    --muted-foreground: 215 20% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    /* Dark Accent */
+    --accent: 142 86% 38%; /* Slightly brighter green */
+    --accent-foreground: 224 16% 10%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    /* Dark Status */
+    --destructive: 0 84% 70%; /* Brighter red for dark mode */
+    --destructive-foreground: 224 16% 10%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    /* Dark Borders */
+    --border: 226 14% 22%;
+    --input: 226 14% 22%;
+    --ring: 234 89% 74%;
+
+    /* Dark Task Status */
+    --task-open: 217 91% 70%;
+    --task-completed: 142 86% 38%;
+    --task-overdue: 0 84% 70%;
+
+    /* Dark Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(234 89% 74%), hsl(234 89% 64%));
+    --gradient-secondary: linear-gradient(135deg, hsl(226 14% 22%), hsl(226 14% 32%));
+
+    /* Dark Shadows */
+    --shadow-card: 0 1px 3px 0 hsl(0 0% 0% / 0.3), 0 1px 2px -1px hsl(0 0% 0% / 0.3);
+    --shadow-fab: 0 8px 25px -8px hsl(234 89% 74% / 0.3);
+    --shadow-elevated: 0 10px 25px -3px hsl(0 0% 0% / 0.3), 0 4px 6px -4px hsl(0 0% 0% / 0.3);
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -100,6 +150,77 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    @apply overscroll-none; /* Prevent pull-to-refresh in browser */
+  }
+
+  /* Mobile Optimizations */
+  html {
+    @apply overscroll-none;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+@layer components {
+  /* Task Card Styles */
+  .task-card {
+    @apply bg-card border border-border rounded-lg p-4 shadow-[var(--shadow-card)];
+    @apply transition-all duration-200 hover:shadow-[var(--shadow-elevated)];
+  }
+
+  .task-card.completed {
+    @apply opacity-75 bg-muted;
+  }
+
+  /* Floating Action Button */
+  .fab {
+    @apply fixed bottom-6 right-6 z-50;
+    @apply w-14 h-14 rounded-full bg-primary text-primary-foreground;
+    @apply shadow-[var(--shadow-fab)] hover:shadow-[var(--shadow-elevated)];
+    @apply transition-all duration-300 hover:scale-110;
+    @apply flex items-center justify-center;
+  }
+
+  /* Swipe Actions */
+  .swipe-action {
+    @apply absolute inset-0 flex items-center justify-end px-4;
+    @apply bg-destructive text-destructive-foreground;
+    @apply transition-all duration-200;
+  }
+
+  /* Status Indicators */
+  .status-open {
+    @apply bg-[hsl(var(--task-open))] text-white;
+  }
+
+  .status-completed {
+    @apply bg-[hsl(var(--task-completed))] text-white;
+  }
+
+  .status-overdue {
+    @apply bg-[hsl(var(--task-overdue))] text-white;
+  }
+
+  /* Pull to Refresh */
+  .pull-refresh {
+    @apply transform translate-y-0 transition-transform duration-300;
+  }
+
+  .pull-refresh.pulling {
+    @apply translate-y-16;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-secondary {
+    background: var(--gradient-secondary);
   }
 }
